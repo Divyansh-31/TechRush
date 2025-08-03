@@ -225,3 +225,15 @@ body {
         width: 50px;
     }
 }
+
+/* --- Keyframe Animations --- */
+
+/* Animation for the body background color */
+@keyframes color_animate {
+  from {
+    background-color: #222831;
+  }
+  to {
+    background-color: #393E46;
+  }
+}
