@@ -1,14 +1,29 @@
-*{
-    padding: 0rem;
-    margin: 0rem;
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset default browser styles for all elements */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{ 
-    display:flex;
-    justify-content: center;
+/* Body styling and background animation */
+body {
+    /* Center content horizontally and vertically */
+    display: flex;
     align-items: center;
-    height: 100vh;
-    background: #e3f2fd;
+    justify-content: center;
+    min-height: 100vh;
+    /* Initial background color */
+    background: #222831;
+    /* Apply a color change animation */
+    animation-name: color_animate;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.4s;
+    animation-direction: alternate-reverse; /* Reverses the animation on each cycle */
+    animation-iteration-count: infinite; /* Loops the animation indefinitely */
+    transition: all; /* Apply a transition to all properties */
 }
