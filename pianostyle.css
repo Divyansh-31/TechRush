@@ -47,3 +47,64 @@ body {
 .app-header h1 {
     font-size: 1.6rem;
 }
+
+/* Container for controls (volume, key visibility) */
+.controls-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Label for controls */
+.controls-group span {
+    font-weight: 500;
+    margin-right: 15px;
+    font-size: 1.19rem;
+}
+
+/* General input field styling within controls */
+.controls-group input {
+    outline: none;
+    border-radius: 30px;
+}
+
+/* Volume control input-specific styling */
+.volume-control input {
+    accent-color: #fff; /* Changes the color of the slider's track */
+}
+
+/* Styling for the key visibility toggle switch */
+.key-visibility input {
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    appearance: none; /* Removes default browser styling for the checkbox */
+    position: relative;
+    background: #4B4B4B;
+}
+
+/* Styling for the toggle switch's circle (the "thumb") */
+.key-visibility input::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #8c8c8c;
+    transform: translateY(-50%);
+    transition: all 0.3s ease; /* Smooth transition for movement and color change */
+}
+
+/* State when the toggle switch is checked (on) */
+.key-visibility input:checked::before {
+    left: 35px; /* Moves the thumb to the right */
+    background: #fff; /* Changes the thumb color to white */
+}
+
+/* Container for the piano keys */
+.instrument-keys {
+    display: flex;
+    list-style: none; /* Removes bullet points from the list */
+    margin-top: 40px;
+}
