@@ -108,3 +108,63 @@ body {
     list-style: none; /* Removes bullet points from the list */
     margin-top: 40px;
 }
+
+/* Common styling for all key items */
+.instrument-keys .key-item {
+    cursor: pointer;
+    user-select: none; /* Prevents text selection on the keys */
+    position: relative;
+    text-transform: uppercase;
+}
+
+/* Styling for black keys */
+.instrument-keys .black {
+    z-index: 2; /* Ensures black keys are on top of white keys */
+    width: 44px;
+    height: 140px;
+    margin: 0 -22px 0 -22px; /* Overlaps with white keys */
+    border-radius: 0 0 5px 5px;
+    background: linear-gradient(#333, #000);
+}
+
+/* Active state for a black key when pressed */
+.instrument-keys .black.active {
+    box-shadow: inset -5px -10px 10px rgba(255,255,255,0.1);
+    background:linear-gradient(to bottom, #000, #434343);
+}
+
+/* Styling for white keys */
+.instrument-keys .white {
+    height: 230px;
+    width: 70px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: linear-gradient(#fff 96%, #eee 4%);
+}
+
+/* Active state for a white key when pressed */
+.instrument-keys .white.active {
+    box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
+    background:linear-gradient(to bottom, #fff 0%, #eee 100%);
+}
+
+/* Styling for the text label on each key */
+.instrument-keys .key-item span {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    color: #A2A2A2;
+    font-size: 1.13rem;
+    text-align: center;
+}
+
+/* Hides the key label when the toggle is off */
+.instrument-keys .key-item.hide span {
+    display: none;
+}
+
+/* Adjustments for the text label on black keys */
+.instrument-keys .black span {
+    bottom: 13px;
+    color: #888888;
+}
