@@ -27,3 +27,23 @@ body {
     animation-iteration-count: infinite; /* Loops the animation indefinitely */
     transition: all; /* Apply a transition to all properties */
 }
+
+/* Main container for the app */
+.app-container {
+    padding: 35px 40px;
+    border-radius: 20px;
+    background: #141414;
+}
+
+/* Header section of the app */
+.app-header {
+    display: flex;
+    color: #B2B2B2;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Main heading in the header */
+.app-header h1 {
+    font-size: 1.6rem;
+}
