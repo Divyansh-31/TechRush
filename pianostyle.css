@@ -166,5 +166,62 @@ body {
 /* Adjustments for the text label on black keys */
 .instrument-keys .black span {
     bottom: 13px;
-    color: #888888;
+    color: hsl(0, 0%, 53%);
+}
+
+/* --- Media Queries for Responsive Design --- */
+
+/* Styles for screens up to 815px wide */
+@media screen and (max-width: 815px) {
+    /* Adjust container padding */
+    .app-container {
+        padding: 25px;
+    }
+    /* Stack header items vertically */
+    .app-header {
+        flex-direction: column;
+    }
+    /* Add margin to header elements */
+    .app-header :where(h1, .controls-group) {
+        margin-bottom: 13px;
+    }
+    /* Constrain volume control width */
+    .volume-control input {
+        max-width: 100px;
+    }
+    /* Adjust key container margin */
+    .instrument-keys {
+        margin-top: 20px;
+    }
+    /* Hide two keys to fit smaller screens */
+    .instrument-keys .key-item:where(:nth-child(9), :nth-child(10)) {
+        display: none;
+    }
+    /* Shrink black keys */
+    .instrument-keys .black {
+        height: 100px;
+        width: 40px;
+        margin: 0 -20px 0 -20px;
+    }
+    /* Shrink white keys */
+    .instrument-keys .white {
+        height: 180px;
+        width: 60px;
+    }
+}
+
+/* Styles for screens up to 615px wide */
+@media screen and (max-width: 615px) {
+    /* Hide several more keys to fit on very small screens */
+    .instrument-keys .key-item:nth-child(13),
+    .instrument-keys .key-item:nth-child(14),
+    .instrument-keys .key-item:nth-child(15),
+    .instrument-keys .key-item:nth-child(16),
+    .instrument-keys .key-item:nth-child(17) {
+        display: none;
+    }
+    /* Further shrink white keys */
+    .instrument-keys .white {
+        width: 50px;
+    }
 }
