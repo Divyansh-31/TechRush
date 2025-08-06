@@ -2,7 +2,7 @@ const instrumentKeys = document.querySelectorAll(".instrument-keys .key-item"),
 volumeControl = document.querySelector(".volume-control input"),
 keyVisibility = document.querySelector(".key-visibility input");
 let allKeys = [],
-audio = new Audio(tunes/a.wav); // by default, audio src is "a" tune
+audio = new Audio(`tunes/a.wav`); // by default, audio src is "a" tune
 const playTune = (key) => {
     audio.src = `tunes/${key}.wav`; // passing audio src based on key pressed 
     audio.play(); // playing audio
