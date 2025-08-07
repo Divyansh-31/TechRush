@@ -1,2 +1,0 @@
-# TechRush
-#Team SPARKS
