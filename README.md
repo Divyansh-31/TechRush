@@ -1,21 +1,39 @@
-# TechRush
-SoundSpace by Team SPARKS
-SoundSpace is an interactive web-based musical instrument platform that lets users play virtual Piano and Drums with engaging animations, floating musical notes, and responsive sound. Perfect for beginners, music lovers, or just having fun with music in your browser!
+# 🎧 TechRush  
+**SoundSpace** by **Team SPARKS**
 
-🌟 Features
--🎹 Interactive Piano
-    Click or press keys to play notes
-    Adjustable volume
-    Show/hide note labels
-    Responsive design (mobile-friendly)
--🥁 Drum Pad
-    Click or use keyboard to trigger drum sounds
-    Custom icons for each drum type
-    Tap-friendly for mobile users
--🎶 Visual Effects
-    Floating animated musical notes behind the piano
-    Smooth transitions and hover animations
--🧠 Accessibility
-    Keyboard navigation support
+SoundSpace is an interactive web-based musical instrument platform that lets users play virtual **Piano** and **Drums** with engaging animations, floating musical notes, and responsive sound.  
+Perfect for beginners, music lovers, or anyone who enjoys making music in the browser!
 
-Just open landing.html in you browser. No build tools required!
+---
+
+## 🌟 Features
+
+### 🎹 Interactive Piano
+- Click or press keyboard keys to play notes  
+- Adjustable volume control  
+- Toggle note labels on keys  
+- Responsive layout for all screen sizes  
+
+### 🥁 Drum Pad
+- Click or press keys to play different drum sounds  
+- Custom icons for each drum type  
+- Mobile tap support  
+
+### 🎶 Visual Effects
+- Floating musical notes animation behind the piano  
+- Smooth transitions and hover animations for interactivity  
+
+### 🧠 Accessibility
+- Keyboard-friendly navigation  
+- Focusable and ARIA-labeled elements  
+
+---
+
+## 🚀 Getting Started
+
+1. Clone or download this repository.
+2. Open `landing.html` in any modern web browser.
+3. Start playing!
+
+✅ No installation or build tools required – it's all HTML, CSS, and JavaScript.
+
