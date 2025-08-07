@@ -31,3 +31,23 @@ const pressedKey = (e) => {
 keyVisibility.addEventListener("click", toggleKeyVisibility);
 volumeControl.addEventListener("input", handleVolume);
 document.addEventListener("keydown", pressedKey);
+
+function createFloatingNote() {
+    const note = document.createElement('div');
+    const notes = ['♪', '♩', '♫', '♬'];
+    note.classList.add('floating-note');
+    note.textContent = notes[Math.floor(Math.random() * notes.length)];
+    
+    note.style.left = `${Math.random() * 100}%`;
+    note.style.top = '100%';
+    note.style.fontSize = `${Math.random() * 20 + 16}px`;
+
+    document.querySelector('.piano-wrapper').appendChild(note);
+
+    setTimeout(() => {
+        note.remove();
+    }, 6000);
+}
+
+// Increase frequency to every 300ms
+setInterval(createFloatingNote, 800);
