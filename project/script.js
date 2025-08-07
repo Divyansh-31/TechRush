@@ -1,53 +1,113 @@
+// Get references to all piano keys, volume input, and key label toggle
 const instrumentKeys = document.querySelectorAll(".instrument-keys .key-item"),
-volumeControl = document.querySelector(".volume-control input"),
-keyVisibility = document.querySelector(".key-visibility input");
-let allKeys = [],
-audio = new Audio(`tunes/a.wav`); // by default, audio src is "a" tune
+      volumeControl = document.querySelector(".volume-control input"),
+      keyVisibility = document.querySelector(".key-visibility input");
+
+// Track all available keys for keyboard input
+let allKeys = [];
+let audio = new Audio(`tunes/a.wav`); // Default audio to prevent delay
+
+// Playback function for both click and keyboard input
 const playTune = (key) => {
-    audio.src = `tunes/${key}.wav`; // passing audio src based on key pressed 
-    audio.play(); // playing audio
-    const clickedKey = document.querySelector(`[data-key="${key}"]`); // getting clicked key element
-    clickedKey.classList.add("active"); // adding active class to the clicked key element
-    setTimeout(() => { // removing active class after 150 ms from the clicked key element
+    audio.src = `tunes/${key}.wav`;  // Set audio source
+    audio.play();                    // Play audio
+
+    // Add visual feedback
+    const clickedKey = document.querySelector(`[data-key="${key}"]`);
+    if (!clickedKey) return;
+    clickedKey.classList.add("active");
+    setTimeout(() => {
         clickedKey.classList.remove("active");
     }, 150);
-}
+
+    // If recording is active, store the key and relative time
+    if (isRecording) {
+        recordedNotes.push({
+            key,
+            time: Date.now() - recordingStartTime
+        });
+    }
+};
+
+// Attach click events to each piano key
 instrumentKeys.forEach(key => {
-    allKeys.push(key.dataset.key); // adding data-key value to the allKeys array
-    // calling playTune function with passing data-key value as an argument
+    allKeys.push(key.dataset.key); // Store all keys for keyboard playback
     key.addEventListener("click", () => playTune(key.dataset.key));
 });
+
+// Handle volume slider input
 const handleVolume = (e) => {
-    audio.volume = e.target.value; // passing the range slider value as an audio volume
-}
+    audio.volume = e.target.value;
+};
+
+// Toggle visibility of key labels
 const toggleKeyVisibility = () => {
-    // toggling hide class from each key on the checkbox click
     instrumentKeys.forEach(key => key.classList.toggle("hide"));
-}
+};
+
+// Handle key presses from keyboard
 const pressedKey = (e) => {
-    // if the pressed key is in the allKeys array, only call the playTune function
-    if(allKeys.includes(e.key)) playTune(e.key);
-}
-keyVisibility.addEventListener("click", toggleKeyVisibility);
+    if (allKeys.includes(e.key)) {
+        playTune(e.key);
+    }
+};
+
+// Listen to volume change, key label toggle, and key press
 volumeControl.addEventListener("input", handleVolume);
+keyVisibility.addEventListener("click", toggleKeyVisibility);
 document.addEventListener("keydown", pressedKey);
 
-function createFloatingNote() {
-    const note = document.createElement('div');
-    const notes = ['♪', '♩', '♫', '♬'];
-    note.classList.add('floating-note');
-    note.textContent = notes[Math.floor(Math.random() * notes.length)];
-    
-    note.style.left = `${Math.random() * 100}%`;
-    note.style.top = '100%';
-    note.style.fontSize = `${Math.random() * 20 + 16}px`;
+// ==============================
+// 🎙️ Recording Functionality
+// ==============================
 
-    document.querySelector('.piano-wrapper').appendChild(note);
+// State for recording
+let isRecording = false;
+let recordedNotes = [];
+let recordingStartTime = 0;
 
-    setTimeout(() => {
-        note.remove();
-    }, 6000);
-}
+// Buttons
+const startBtn = document.getElementById("start-recording");
+const stopBtn = document.getElementById("stop-recording");
+const saveBtn = document.getElementById("save-recording");
 
-// Increase frequency to every 300ms
-setInterval(createFloatingNote, 800);
+// Start recording: reset previous notes and track time
+startBtn.addEventListener("click", () => {
+    recordedNotes = [];
+    isRecording = true;
+    recordingStartTime = Date.now();
+
+    // Button states
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    saveBtn.disabled = true;
+});
+
+// Stop recording: disable recording and allow save
+stopBtn.addEventListener("click", () => {
+    isRecording = false;
+
+    // Button states
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    saveBtn.disabled = recordedNotes.length === 0;
+});
+
+// Save recording to JSON file
+saveBtn.addEventListener("click", () => {
+    if (recordedNotes.length === 0) return;
+
+    const blob = new Blob(
+        [JSON.stringify(recordedNotes, null, 2)],
+        { type: "application/json" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "melody-recording.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+});

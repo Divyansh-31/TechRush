@@ -11,13 +11,21 @@
 
 /* Body styling and background animation */
 body {
+    /* Center content horizontally and vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
+    /* Initial background color */
     background: #222831;
-    animation: color_animate 1s ease-in-out 0.4s alternate-reverse infinite;
-    transition: all;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent scrollbars from floating notes */
+    /* Apply a color change animation */
+    animation-name: color_animate;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.4s;
+    animation-direction: alternate-reverse; /* Reverses the animation on each cycle */
+    animation-iteration-count: infinite; /* Loops the animation indefinitely */
+    transition: all; /* Apply a transition to all properties */
 }
 
 /* Main container for the app */
@@ -158,7 +166,7 @@ body {
 /* Adjustments for the text label on black keys */
 .instrument-keys .black span {
     bottom: 13px;
-    color: hsl(0, 0%, 53%);
+    color: #888888;
 }
 
 /* --- Media Queries for Responsive Design --- */
@@ -222,48 +230,45 @@ body {
 
 /* Animation for the body background color */
 @keyframes color_animate {
-  from {
-    background-color: #222831;
-  }
-  to {
-    background-color: #393E46;
-  }
+    from {
+        background-color: #222831;
+    }
+    to {
+        background-color: #393E46;
+    }
 }
 
-.piano-wrapper {
-    position: relative;
-    z-index: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+
+/*Start stop and save (record buttons)*/
+.recording-controls{
     display: flex;
-    align-items: center;
     justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5625rem;
+}
+
+.recording-controls button{
+    border:none;
+    border-radius: 15px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #B0B0B0;
+   color:white;
+cursor:pointer;
+transition: 0.3s ease;
+box-shadow:  2px 2px 2px rgb(231, 230, 230);
+color: #282828;
 }
 
 
-.floating-note {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 24px;
-    pointer-events: none;
-    animation: floatNote 6s linear forwards;
-    z-index: -1; /* behind piano */
+
+.recording-controls button:hover:not(:disabled){
+    transform: scale(1.105);
+    transition: all 0.5s;
+    background-color: rgb(201, 200, 200);
 }
 
-@keyframes floatNote {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
+.recording-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

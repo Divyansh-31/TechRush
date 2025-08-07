@@ -335,15 +335,13 @@ body {
 }
 
 .card-back {
-    background: linear-gradient(135deg, rgb(250, 80, 80), rgb(97, 233, 97), rgb(46, 46, 180));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1),black, rgba(255, 255, 255, 0.05));
     transform: rotateY(180deg);
     color: white;
 }
 
 .card-back:hover {
-    background: linear-gradient(135deg, rgb(250, 80, 80), rgb(97, 233, 97), rgb(46, 46, 180),rgb(97, 233, 97), rgb(250, 80, 80), );
-    background-size: 150% 150%;
-    animation: rgbGlow 3s linear infinite;
+    
     color: white;
     
 }
