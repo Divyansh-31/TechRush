@@ -32,7 +32,7 @@ Perfect for beginners, music lovers, or anyone who enjoys making music in the br
 ## 🚀 Getting Started
 
 1. Clone or download this repository.
-2. Open `landing.html` in any modern web browser.
+2. Open `index.html` in any modern web browser.
 3. Start playing!
 
 ✅ No installation or build tools required – it's all HTML, CSS, and JavaScript.

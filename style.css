@@ -1,8 +1,9 @@
 *{
     padding:0;
-    margin:0;
+  margin:0px;
 }
 .drumkit{
+   
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
@@ -52,3 +53,5 @@
 .pad:active{
    box-shadow:10px 10px 12px blue;
 }
+
+
