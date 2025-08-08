@@ -54,7 +54,6 @@ const drums = new Howl({
 
   drumkit.addEventListener('click', playDrum);
   drumkit.addEventListener('touchstart', playDrum);
-<<<<<<< HEAD
 
 
 
@@ -108,6 +107,3 @@ mediaRecorder.onstop = function () {
 
 };
 
-=======
-  
->>>>>>> 3f6a0be00df2e4828f3773d0da8c2b9e99b4afcc
