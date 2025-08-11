@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
 
 </head>
-<body>
-    <div class="container my-3 text-center">
+
+<div class="container my-3 text-center">
     <button id="startRecordingBtn" class="btn btn-success mx-2">Start Recording</button>
-    <button id="stopRecordingBtn" class="btn btn-danger mx-2">Stop Recording</button>
+    <button id="stopRecordingBtn" class="btn btn-danger mx-2" disabled>Stop Recording</button>
+    <button id="saveRecordingBtn" class="btn btn-primary mx-2" disabled>Save Recording</button>
+    <input type="file" id="uploadJson" accept=".json" class="mx-2">
+    <button id="playUploadedBtn" class="btn btn-warning mx-2" disabled>Play Uploaded</button>
 </div>
 
        
@@ -19,21 +22,27 @@
     <div class="drumkit">
         <div class="pad" data-sound="clap">
             <img src="clap.png" alt="clap">
+            <div class="label">A</div>
         </div>
          <div class="pad" data-sound="snare">
             <img src="snare.png" alt="snare">
+            <div class="label">S</div>
          </div>
           <div class="pad" data-sound="crash">
             <img src="crash.png" alt="crash">
+            <div class="label">D</div>
           </div>
            <div class="pad" data-sound="open-hihat">
             <img src="open-hihat.png" alt="open-hat">
+            <div class="label">J</div>
            </div>
             <div class="pad" data-sound="kick">
                 <img src="kick.png" alt="kick">
+                <div class="label">K</div>
             </div>
              <div class="pad" data-sound="closed-hihat">
                 <img src="closed-hihat.png" alt="closed-hithat">
+                <div class="label">L</div>
              </div>
 
         
