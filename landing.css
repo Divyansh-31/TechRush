@@ -595,3 +595,13 @@ body {
         background-position: 0% 50%;
     }
 }
+
+@media (max-width: 48rem) {
+
+    /* On the front side, hide everything except image and title */
+    .card-front p,
+    .card-features {
+        display: none !important;
+    }
+
+}
