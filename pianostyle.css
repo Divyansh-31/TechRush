@@ -1,4 +1,4 @@
-/* Import Google font - Poppins */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 /* Reset default browser styles for all elements */
@@ -30,7 +30,7 @@ body {
 
 /* Main container for the app */
 .app-container {
-    padding: 35px 40px;
+    padding: 2.1875rem 2.5rem;
     border-radius: 20px;
     background: #141414;
 }
@@ -57,14 +57,14 @@ body {
 /* Label for controls */
 .controls-group span {
     font-weight: 500;
-    margin-right: 15px;
+    margin-right: 0.9375rem;
     font-size: 1.19rem;
 }
 
 /* General input field styling within controls */
 .controls-group input {
     outline: none;
-    border-radius: 30px;
+    border-radius: 1.875rem;
 }
 
 /* Volume control input-specific styling */
@@ -74,8 +74,8 @@ body {
 
 /* Styling for the key visibility toggle switch */
 .key-visibility input {
-    height: 30px;
-    width: 60px;
+    height: 1.875rem;
+    width: 3.75rem;
     cursor: pointer;
     appearance: none; /* Removes default browser styling for the checkbox */
     position: relative;
@@ -87,9 +87,9 @@ body {
     content: "";
     position: absolute;
     top: 50%;
-    left: 5px;
-    width: 20px;
-    height: 20px;
+    left: 0.3125rem;
+    width: 1.25rem;
+    height: 1.25rem;
     border-radius: 50%;
     background: #8c8c8c;
     transform: translateY(-50%);
@@ -98,7 +98,7 @@ body {
 
 /* State when the toggle switch is checked (on) */
 .key-visibility input:checked::before {
-    left: 35px; /* Moves the thumb to the right */
+    left: 2.1875rem; /* Moves the thumb to the right */
     background: #fff; /* Changes the thumb color to white */
 }
 
@@ -106,7 +106,7 @@ body {
 .instrument-keys {
     display: flex;
     list-style: none; /* Removes bullet points from the list */
-    margin-top: 40px;
+    margin-top: 2.5rem;
 }
 
 /* Common styling for all key items */
@@ -120,38 +120,38 @@ body {
 /* Styling for black keys */
 .instrument-keys .black {
     z-index: 2; /* Ensures black keys are on top of white keys */
-    width: 44px;
-    height: 140px;
-    margin: 0 -22px 0 -22px; /* Overlaps with white keys */
-    border-radius: 0 0 5px 5px;
+    width: 2.75rem;
+    height: 8.75rem;
+    margin: 0 -1.375rem 0 -1.375rem; /* Overlaps with white keys */
+    border-radius: 0 0 0.3125rem 0.3125rem;
     background: linear-gradient(#333, #000);
 }
 
 /* Active state for a black key when pressed */
 .instrument-keys .black.active {
-    box-shadow: inset -5px -10px 10px rgba(255,255,255,0.1);
+    box-shadow: inset -0.3125rem -0.625rem 0.625rem rgba(255,255,255,0.1);
     background:linear-gradient(to bottom, #000, #434343);
 }
 
 /* Styling for white keys */
 .instrument-keys .white {
-    height: 230px;
-    width: 70px;
-    border-radius: 8px;
-    border: 1px solid #000;
+    height: 14.375rem;
+    width: 4.375rem;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid #000;
     background: linear-gradient(#fff 96%, #eee 4%);
 }
 
 /* Active state for a white key when pressed */
 .instrument-keys .white.active {
-    box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
+    box-shadow: inset -0.3125rem 0.3125rem 1.25rem rgba(0,0,0,0.2);
     background:linear-gradient(to bottom, #fff 0%, #eee 100%);
 }
 
 /* Styling for the text label on each key */
 .instrument-keys .key-item span {
     position: absolute;
-    bottom: 20px;
+    bottom: 1.25rem;
     width: 100%;
     color: #A2A2A2;
     font-size: 1.13rem;
@@ -165,7 +165,7 @@ body {
 
 /* Adjustments for the text label on black keys */
 .instrument-keys .black span {
-    bottom: 13px;
+    bottom: 0.8125rem;
     color: #888888;
 }
 
@@ -175,7 +175,7 @@ body {
 @media screen and (max-width: 815px) {
     /* Adjust container padding */
     .app-container {
-        padding: 25px;
+        padding: 1.5625rem;
     }
     /* Stack header items vertically */
     .app-header {
@@ -183,15 +183,15 @@ body {
     }
     /* Add margin to header elements */
     .app-header :where(h1, .controls-group) {
-        margin-bottom: 13px;
+        margin-bottom: 0.8125rem;
     }
     /* Constrain volume control width */
     .volume-control input {
-        max-width: 100px;
+        max-width: 6.25rem;
     }
     /* Adjust key container margin */
     .instrument-keys {
-        margin-top: 20px;
+        margin-top: 1.25rem;
     }
     /* Hide two keys to fit smaller screens */
     .instrument-keys .key-item:where(:nth-child(9), :nth-child(10)) {
@@ -199,19 +199,19 @@ body {
     }
     /* Shrink black keys */
     .instrument-keys .black {
-        height: 100px;
-        width: 40px;
-        margin: 0 -20px 0 -20px;
+        height: 6.25rem;
+        width: 2.5rem;
+        margin: 0 -1.25rem 0 -1.25rem;
     }
     /* Shrink white keys */
     .instrument-keys .white {
-        height: 180px;
-        width: 60px;
+        height: 11.25rem;
+        width: 3.75rem;
     }
 }
 
 /* Styles for screens up to 615px wide */
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 38.4375rem) {
     /* Hide several more keys to fit on very small screens */
     .instrument-keys .key-item:nth-child(13),
     .instrument-keys .key-item:nth-child(14),
@@ -222,7 +222,7 @@ body {
     }
     /* Further shrink white keys */
     .instrument-keys .white {
-        width: 50px;
+        width: 3.125rem;
     }
 }
 
@@ -249,9 +249,9 @@ body {
 
 .recording-controls button{
     border:none;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
     font-size: 1rem;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     background-color: #B0B0B0;
    color:white;
 cursor:pointer;
@@ -282,9 +282,9 @@ color: #282828;
 
 .playback-controls button{
     border:none;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
     font-size: 1rem;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     background-color: #B0B0B0;
    color:white;
 cursor:pointer;
@@ -295,9 +295,9 @@ color: #282828;
 
 .playback-controls #upload-json{
      border:none;
-    border-radius: 15px;
-    font-size: 1rem;
-    padding: 10px 20px;
+    border-radius: 0.9385rem;
+    font-size: 0.875rem;
+    padding: 0.675rem 1.25rem;
     background-color: #B0B0B0;
    color:white;
 cursor:pointer;
@@ -310,6 +310,80 @@ color: #282828;
  .playback-controls button:hover{
     transform: scale(1.105);
     transition: all 0.5s;
-    background-color: rgb(201, 200, 200);
+    background-color: #B0B0B0;
 }
  
+
+
+
+/* Game implementation */
+.instrument-keys .key-item .highlight {
+  background-color: rgba(255,0,0,0.4); /* semi-transparent cyan overlay */
+  box-shadow: 0 0 20px 3px rgba(255, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.instrument-keys .black .highlight {
+  background: rgba(255,0,0,0.4);
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 30px 4px rgba(255, 0, 0, 0.7);
+}
+
+.instrument-keys .key-item.highlight {
+  animation: highlightFade 0.5s forwards;
+}
+
+@keyframes highlightFade {
+  from {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  to {
+    background-color: rgba(255,0,0,0.4);
+    box-shadow: 0 0 20px 3px rgba(255, 0, 0, 0.7);
+  }
+}
+
+@keyframes highlightGlow {
+  0% {
+    box-shadow: 0 0 0.625rem 0.125rem #ff0000
+
+;
+  }
+  100% {
+    box-shadow: 0 0 3.125rem 0.4375rem #ff0000;
+  }
+}
+
+/* Score display styling */
+#game-container {
+  margin-top: 1.8125rem;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+#score {
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+#start-game-btn {
+  cursor: pointer;
+  background-color: #0af;
+  border: none;
+  border-radius: 10px;
+  padding: 0.625rem 1.25rem;
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 8px #0af;
+}
+
+#start-game-btn:hover {
+  background-color: #08c;
+}

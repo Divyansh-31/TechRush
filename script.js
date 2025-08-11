@@ -1,137 +1,112 @@
-// Get references to all piano keys, volume input, and key label toggle
 const instrumentKeys = document.querySelectorAll(".instrument-keys .key-item"),
-      volumeControl = document.querySelector(".volume-control input"),
-      keyVisibility = document.querySelector(".key-visibility input");
+  volumeControl = document.querySelector(".volume-control input"),
+  keyVisibility = document.querySelector(".key-visibility input");
 
-// Track all available keys for keyboard input
 let allKeys = [];
-let audio = new Audio(`tunes/a.wav`); // Default audio to prevent delay
+let audio = new Audio(`tunes/a.wav`);
 
-// Playback function for both click and keyboard input
+// === Play sound and highlight keys ===
 const playTune = (key) => {
-    audio.src = `tunes/${key}.wav`;  // Set audio source
-    audio.play();                    // Play audio
+  audio.src = `tunes/${key}.wav`;
+  audio.play();
 
-    // Add visual feedback
-    const clickedKey = document.querySelector(`[data-key="${key}"]`);
-    if (!clickedKey) return;
-    clickedKey.classList.add("active");
-    setTimeout(() => {
-        clickedKey.classList.remove("active");
-    }, 150);
+  const clickedKey = document.querySelector(`[data-key="${key}"]`);
+  if (!clickedKey) return;
 
-    // If recording is active, store the key and relative time
-    if (isRecording) {
-        recordedNotes.push({
-            key,
-            time: Date.now() - recordingStartTime
-        });
-    }
+  clickedKey.classList.add("active");
+
+  setTimeout(() => clickedKey.classList.remove("active"), 150);
+
+  if (isRecording) {
+    recordedNotes.push({
+      key,
+      time: Date.now() - recordingStartTime,
+    });
+  }
 };
 
-// Attach click events to each piano key
-instrumentKeys.forEach(key => {
-    allKeys.push(key.dataset.key); // Store all keys for keyboard playback
-    key.addEventListener("click", () => playTune(key.dataset.key));
+instrumentKeys.forEach((key) => {
+  allKeys.push(key.dataset.key);
+  key.addEventListener("click", () => {
+    playTune(key.dataset.key);
+    if (gameActive) handleGameInput(key.dataset.key);
+  });
 });
 
-// Handle volume slider input
-const handleVolume = (e) => {
-    audio.volume = e.target.value;
-};
+volumeControl.addEventListener("input", (e) => {
+  audio.volume = e.target.value;
+});
 
-// Toggle visibility of key labels
-const toggleKeyVisibility = () => {
-    instrumentKeys.forEach(key => key.classList.toggle("hide"));
-};
+keyVisibility.addEventListener("click", () => {
+  instrumentKeys.forEach((key) => key.classList.toggle("hide"));
+});
 
-// Handle key presses from keyboard
-const pressedKey = (e) => {
-    if (allKeys.includes(e.key)) {
-        playTune(e.key);
-    }
-};
-
-// Listen to volume change, key label toggle, and key press
-volumeControl.addEventListener("input", handleVolume);
-keyVisibility.addEventListener("click", toggleKeyVisibility);
-document.addEventListener("keydown", pressedKey);
+document.addEventListener("keydown", (e) => {
+  const keyPressed = e.key.toLowerCase();
+  if (allKeys.includes(keyPressed)) {
+    playTune(keyPressed);
+    if (gameActive) handleGameInput(keyPressed);
+  }
+});
 
 // ==============================
 // 🎙️ Recording Functionality
 // ==============================
 
-// State for recording
 let isRecording = false;
 let recordedNotes = [];
 let recordingStartTime = 0;
 
-// Buttons
 const startBtn = document.getElementById("start-recording");
 const stopBtn = document.getElementById("stop-recording");
 const saveBtn = document.getElementById("save-recording");
-
-// Start recording: reset previous notes and track time
-startBtn.addEventListener("click", () => {
-    recordedNotes = [];
-    isRecording = true;
-    recordingStartTime = Date.now();
-
-    // Button states
-    startBtn.disabled = true;
-    stopBtn.disabled = false;
-    saveBtn.disabled = true;
-});
-
-// Stop recording: disable recording and allow save
-stopBtn.addEventListener("click", () => {
-    isRecording = false;
-
-    // Button states
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    saveBtn.disabled = recordedNotes.length === 0;
-});
-
-// Save recording to JSON file
-saveBtn.addEventListener("click", () => {
-    if (recordedNotes.length === 0) return;
-
-    const blob = new Blob(
-        [JSON.stringify(recordedNotes, null, 2)],
-        { type: "application/json" }
-    );
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "melody-recording.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-});
-
 const playBtn = document.getElementById("play-recording");
 
-// Enable Play button after recording is stopped and has notes
-stopBtn.addEventListener("click", () => {
-    isRecording = false;
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    saveBtn.disabled = recordedNotes.length === 0;
-    playBtn.disabled = recordedNotes.length === 0;
+startBtn.addEventListener("click", () => {
+  recordedNotes = [];
+  isRecording = true;
+  recordingStartTime = Date.now();
+
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+  saveBtn.disabled = true;
+  playBtn.disabled = true;
 });
 
-// Playback function
-playBtn.addEventListener("click", () => {
-    if (recordedNotes.length === 0) return;
+stopBtn.addEventListener("click", () => {
+  isRecording = false;
 
-    recordedNotes.forEach(note => {
-        setTimeout(() => {
-            playTune(note.key);
-        }, note.time);
-    });
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+  saveBtn.disabled = recordedNotes.length === 0;
+  playBtn.disabled = recordedNotes.length === 0;
+});
+
+saveBtn.addEventListener("click", () => {
+  if (recordedNotes.length === 0) return;
+
+  const blob = new Blob([JSON.stringify(recordedNotes, null, 2)], {
+    type: "application/json",
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "melody-recording.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+playBtn.addEventListener("click", () => {
+  if (recordedNotes.length === 0) return;
+
+  recordedNotes.forEach((note) => {
+    setTimeout(() => {
+      playTune(note.key);
+    }, note.time);
+  });
 });
 
 // ==============================
@@ -142,39 +117,122 @@ const uploadInput = document.getElementById("upload-json");
 const playUploadBtn = document.getElementById("play-upload");
 let uploadedNotes = [];
 
-// Load uploaded JSON
 uploadInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  const file = e.target.files[0];
+  if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        try {
-            uploadedNotes = JSON.parse(event.target.result);
-            if (Array.isArray(uploadedNotes) && uploadedNotes.length > 0) {
-                playUploadBtn.disabled = false;
-            } else {
-                alert("Invalid JSON format.");
-                playUploadBtn.disabled = true;
-            }
-        } catch (err) {
-            alert("Error reading JSON file.");
-            playUploadBtn.disabled = true;
-        }
-    };
-    reader.readAsText(file);
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      uploadedNotes = JSON.parse(event.target.result);
+      if (Array.isArray(uploadedNotes) && uploadedNotes.length > 0) {
+        playUploadBtn.disabled = false;
+      } else {
+        alert("Invalid JSON format.");
+        playUploadBtn.disabled = true;
+      }
+    } catch (err) {
+      alert("Error reading JSON file.");
+      playUploadBtn.disabled = true;
+    }
+  };
+  reader.readAsText(file);
 });
 
-// Play uploaded melody
 playUploadBtn.addEventListener("click", () => {
-    if (uploadedNotes.length === 0) return;
+  if (uploadedNotes.length === 0) return;
 
-    // Start from first note
-    let startTime = Date.now();
-    uploadedNotes.forEach(note => {
-        setTimeout(() => {
-            playTune(note.key);
-        }, note.time);
-    });
+  uploadedNotes.forEach((note) => {
+    setTimeout(() => {
+      playTune(note.key);
+    }, note.time);
+  });
 });
 
+// ==============================
+// 🎮 Mini-game Logic
+// ==============================
+
+const startGameBtn = document.getElementById("start-game-btn");
+const scoreDisplay = document.getElementById("score");
+const messageDisplay = document.getElementById("message");
+
+let gameActive = false;
+let currentHighlightedKey = null;
+let score = 0;
+let roundTimeout = null;
+const roundTime = 3000;
+
+function clearHighlights() {
+  instrumentKeys.forEach((key) => key.classList.remove("highlight"));
+}
+
+function highlightRandomKey() {
+  clearHighlights();
+  const randomIndex = Math.floor(Math.random() * instrumentKeys.length);
+  currentHighlightedKey = instrumentKeys[randomIndex];
+  currentHighlightedKey.classList.add("highlight");
+}
+
+function updateScore(change) {
+  score += change;
+  if (score < 0) score = 0;
+  scoreDisplay.textContent = score;
+}
+
+function handleGameInput(key) {
+  if (!gameActive || !currentHighlightedKey) return;
+
+  const expectedKey = currentHighlightedKey.dataset.key;
+
+  if (key === expectedKey) {
+    updateScore(1);
+    messageDisplay.textContent = "Correct! +1 point";
+    nextRound();
+  } else {
+    updateScore(-1);
+    messageDisplay.textContent = `Wrong! Press "${expectedKey}"`;
+  }
+}
+
+function nextRound() {
+  clearTimeout(roundTimeout);
+  highlightRandomKey();
+  setTimeout(() => (messageDisplay.textContent = ""), 1500);
+
+  roundTimeout = setTimeout(() => {
+    updateScore(-1);
+    messageDisplay.textContent = `Too slow! -1 point. Press "${currentHighlightedKey.dataset.key}"`;
+    nextRound();
+  }, roundTime);
+}
+
+function startGame() {
+  if (gameActive) return;
+
+  gameActive = true;
+  score = 0;
+  scoreDisplay.textContent = score;
+  messageDisplay.textContent = "Game Started! Press the highlighted key.";
+  startGameBtn.textContent = "Restart Mini Game";
+  highlightRandomKey();
+
+  roundTimeout = setTimeout(() => {
+    updateScore(-1);
+    messageDisplay.textContent = `Too slow! -1 point. Press "${currentHighlightedKey.dataset.key}"`;
+    nextRound();
+  }, roundTime);
+}
+
+function stopGame() {
+  gameActive = false;
+  clearHighlights();
+  clearTimeout(roundTimeout);
+  messageDisplay.textContent = "Game stopped.";
+  startGameBtn.textContent = "Start Mini Game";
+}
+
+startGameBtn.addEventListener("click", () => {
+  if (gameActive) stopGame();
+  startGame();
+});
