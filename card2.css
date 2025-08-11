@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, black 0%, grey 100%);
+  color: #222;
+  padding: 1.25rem;
+}
+
+.container {
+  max-width: 56.25rem;
+  margin: auto;
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,0.05);
+}
+
+h1 {
+  color: grey;
+}
+
+h2 {
+  color: grey;
+  margin-top: 1.25rem;
+}
+
+p {
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  margin-left: 1.25rem;
+}
+
+strong {
+  color: grey;
+}
+
+hr {
+  border: none;
+  border-top: 0.0625rem solid #ddd;
+  margin: 1.25rem 0;
+}
