@@ -111,3 +111,70 @@ saveBtn.addEventListener("click", () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 });
+
+const playBtn = document.getElementById("play-recording");
+
+// Enable Play button after recording is stopped and has notes
+stopBtn.addEventListener("click", () => {
+    isRecording = false;
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    saveBtn.disabled = recordedNotes.length === 0;
+    playBtn.disabled = recordedNotes.length === 0;
+});
+
+// Playback function
+playBtn.addEventListener("click", () => {
+    if (recordedNotes.length === 0) return;
+
+    recordedNotes.forEach(note => {
+        setTimeout(() => {
+            playTune(note.key);
+        }, note.time);
+    });
+});
+
+// ==============================
+// 📂 Upload & Play JSON Recording
+// ==============================
+
+const uploadInput = document.getElementById("upload-json");
+const playUploadBtn = document.getElementById("play-upload");
+let uploadedNotes = [];
+
+// Load uploaded JSON
+uploadInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            uploadedNotes = JSON.parse(event.target.result);
+            if (Array.isArray(uploadedNotes) && uploadedNotes.length > 0) {
+                playUploadBtn.disabled = false;
+            } else {
+                alert("Invalid JSON format.");
+                playUploadBtn.disabled = true;
+            }
+        } catch (err) {
+            alert("Error reading JSON file.");
+            playUploadBtn.disabled = true;
+        }
+    };
+    reader.readAsText(file);
+});
+
+// Play uploaded melody
+playUploadBtn.addEventListener("click", () => {
+    if (uploadedNotes.length === 0) return;
+
+    // Start from first note
+    let startTime = Date.now();
+    uploadedNotes.forEach(note => {
+        setTimeout(() => {
+            playTune(note.key);
+        }, note.time);
+    });
+});
+

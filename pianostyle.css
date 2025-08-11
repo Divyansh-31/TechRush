@@ -272,3 +272,44 @@ color: #282828;
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.playback-controls{
+     display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5625rem;
+}
+
+.playback-controls button{
+    border:none;
+    border-radius: 15px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #B0B0B0;
+   color:white;
+cursor:pointer;
+transition: 0.3s ease;
+box-shadow:  2px 2px 2px rgb(231, 230, 230);
+color: #282828;
+}
+
+.playback-controls #upload-json{
+     border:none;
+    border-radius: 15px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #B0B0B0;
+   color:white;
+cursor:pointer;
+transition: 0.3s ease;
+box-shadow:  2px 2px 2px rgb(231, 230, 230);
+color: #282828;
+}
+
+
+ .playback-controls button:hover{
+    transform: scale(1.105);
+    transition: all 0.5s;
+    background-color: rgb(201, 200, 200);
+}
+ 
