@@ -1,0 +1,57 @@
+*{
+    padding:0;
+  margin:0px;
+}
+.drumkit{
+   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    height:100vh;
+    background-color: black;
+
+}
+.pad{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex:1 0 calc(33.333% - 1.25rem);
+    margin: 10px;
+    background-color: black;
+    border-radius:1rem;
+    animation-name: light;
+    animation-duration: 4s;
+    animation-timing-function:ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition: all;
+
+
+}
+.pad img{
+    width:150px;
+    pointer-events: none;
+    
+}
+.pad:hover{
+    box-shadow:10px 10px 12px rgb(72, 72, 72); 
+}
+.pad:active{
+   box-shadow:10px 10px 12px blue;
+}
+@keyframes light{
+    0%{
+         box-shadow: 10px 10px 12px rgb(255, 1, 1);
+    }
+    50%{
+         box-shadow: 10px 10px 12px rgb(0, 255, 0);
+    }
+    100%{
+        box-shadow: 10px 10px 12px rgb(0,0 , 255);
+    }
+}
+.pad:active{
+   box-shadow:10px 10px 12px blue;
+}
+
+

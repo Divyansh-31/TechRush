@@ -1,0 +1,274 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset default browser styles for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body styling and background animation */
+body {
+    /* Center content horizontally and vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* Initial background color */
+    background: #222831;
+    /* Apply a color change animation */
+    animation-name: color_animate;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.4s;
+    animation-direction: alternate-reverse; /* Reverses the animation on each cycle */
+    animation-iteration-count: infinite; /* Loops the animation indefinitely */
+    transition: all; /* Apply a transition to all properties */
+}
+
+/* Main container for the app */
+.app-container {
+    padding: 35px 40px;
+    border-radius: 20px;
+    background: #141414;
+}
+
+/* Header section of the app */
+.app-header {
+    display: flex;
+    color: #B2B2B2;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Main heading in the header */
+.app-header h1 {
+    font-size: 1.6rem;
+}
+
+/* Container for controls (volume, key visibility) */
+.controls-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Label for controls */
+.controls-group span {
+    font-weight: 500;
+    margin-right: 15px;
+    font-size: 1.19rem;
+}
+
+/* General input field styling within controls */
+.controls-group input {
+    outline: none;
+    border-radius: 30px;
+}
+
+/* Volume control input-specific styling */
+.volume-control input {
+    accent-color: #fff; /* Changes the color of the slider's track */
+}
+
+/* Styling for the key visibility toggle switch */
+.key-visibility input {
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+    appearance: none; /* Removes default browser styling for the checkbox */
+    position: relative;
+    background: #4B4B4B;
+}
+
+/* Styling for the toggle switch's circle (the "thumb") */
+.key-visibility input::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #8c8c8c;
+    transform: translateY(-50%);
+    transition: all 0.3s ease; /* Smooth transition for movement and color change */
+}
+
+/* State when the toggle switch is checked (on) */
+.key-visibility input:checked::before {
+    left: 35px; /* Moves the thumb to the right */
+    background: #fff; /* Changes the thumb color to white */
+}
+
+/* Container for the piano keys */
+.instrument-keys {
+    display: flex;
+    list-style: none; /* Removes bullet points from the list */
+    margin-top: 40px;
+}
+
+/* Common styling for all key items */
+.instrument-keys .key-item {
+    cursor: pointer;
+    user-select: none; /* Prevents text selection on the keys */
+    position: relative;
+    text-transform: uppercase;
+}
+
+/* Styling for black keys */
+.instrument-keys .black {
+    z-index: 2; /* Ensures black keys are on top of white keys */
+    width: 44px;
+    height: 140px;
+    margin: 0 -22px 0 -22px; /* Overlaps with white keys */
+    border-radius: 0 0 5px 5px;
+    background: linear-gradient(#333, #000);
+}
+
+/* Active state for a black key when pressed */
+.instrument-keys .black.active {
+    box-shadow: inset -5px -10px 10px rgba(255,255,255,0.1);
+    background:linear-gradient(to bottom, #000, #434343);
+}
+
+/* Styling for white keys */
+.instrument-keys .white {
+    height: 230px;
+    width: 70px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background: linear-gradient(#fff 96%, #eee 4%);
+}
+
+/* Active state for a white key when pressed */
+.instrument-keys .white.active {
+    box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
+    background:linear-gradient(to bottom, #fff 0%, #eee 100%);
+}
+
+/* Styling for the text label on each key */
+.instrument-keys .key-item span {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    color: #A2A2A2;
+    font-size: 1.13rem;
+    text-align: center;
+}
+
+/* Hides the key label when the toggle is off */
+.instrument-keys .key-item.hide span {
+    display: none;
+}
+
+/* Adjustments for the text label on black keys */
+.instrument-keys .black span {
+    bottom: 13px;
+    color: #888888;
+}
+
+/* --- Media Queries for Responsive Design --- */
+
+/* Styles for screens up to 815px wide */
+@media screen and (max-width: 815px) {
+    /* Adjust container padding */
+    .app-container {
+        padding: 25px;
+    }
+    /* Stack header items vertically */
+    .app-header {
+        flex-direction: column;
+    }
+    /* Add margin to header elements */
+    .app-header :where(h1, .controls-group) {
+        margin-bottom: 13px;
+    }
+    /* Constrain volume control width */
+    .volume-control input {
+        max-width: 100px;
+    }
+    /* Adjust key container margin */
+    .instrument-keys {
+        margin-top: 20px;
+    }
+    /* Hide two keys to fit smaller screens */
+    .instrument-keys .key-item:where(:nth-child(9), :nth-child(10)) {
+        display: none;
+    }
+    /* Shrink black keys */
+    .instrument-keys .black {
+        height: 100px;
+        width: 40px;
+        margin: 0 -20px 0 -20px;
+    }
+    /* Shrink white keys */
+    .instrument-keys .white {
+        height: 180px;
+        width: 60px;
+    }
+}
+
+/* Styles for screens up to 615px wide */
+@media screen and (max-width: 615px) {
+    /* Hide several more keys to fit on very small screens */
+    .instrument-keys .key-item:nth-child(13),
+    .instrument-keys .key-item:nth-child(14),
+    .instrument-keys .key-item:nth-child(15),
+    .instrument-keys .key-item:nth-child(16),
+    .instrument-keys .key-item:nth-child(17) {
+        display: none;
+    }
+    /* Further shrink white keys */
+    .instrument-keys .white {
+        width: 50px;
+    }
+}
+
+/* --- Keyframe Animations --- */
+
+/* Animation for the body background color */
+@keyframes color_animate {
+    from {
+        background-color: #222831;
+    }
+    to {
+        background-color: #393E46;
+    }
+}
+
+
+/*Start stop and save (record buttons)*/
+.recording-controls{
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5625rem;
+}
+
+.recording-controls button{
+    border:none;
+    border-radius: 15px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #B0B0B0;
+   color:white;
+cursor:pointer;
+transition: 0.3s ease;
+box-shadow:  2px 2px 2px rgb(231, 230, 230);
+color: #282828;
+}
+
+
+
+.recording-controls button:hover:not(:disabled){
+    transform: scale(1.105);
+    transition: all 0.5s;
+    background-color: rgb(201, 200, 200);
+}
+
+.recording-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
