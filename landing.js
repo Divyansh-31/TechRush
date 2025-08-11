@@ -164,3 +164,85 @@ document.querySelectorAll('.instrument-card').forEach(card => {
     card.setAttribute('role', 'button');
     card.setAttribute('aria-label', `Play ${card.querySelector('h3').textContent}`);
 });
+// Hamburger menu functionality
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close mobile menu on window resize if it's open
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Enhanced touch support for mobile cards
+document.querySelectorAll('.instrument-card').forEach(card => {
+    let touchStartTime = 0;
+    
+    card.addEventListener('touchstart', (e) => {
+        touchStartTime = Date.now();
+    });
+    
+    card.addEventListener('touchend', (e) => {
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // If it's a quick tap (less than 300ms), trigger the flip
+        if (touchDuration < 300) {
+            e.preventDefault();
+            card.classList.toggle('flipped');
+        }
+    });
+});
+
+// Add CSS class for manual card flipping on mobile
+const cardFlipStyle = document.createElement('style');
+cardFlipStyle.textContent = `
+    @media (max-width: 768px) {
+        .instrument-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .instrument-card:hover .card-inner {
+            transform: none;
+        }
+        
+        .instrument-card.flipped:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+    }
+`;
+document.head.appendChild(cardFlipStyle);
