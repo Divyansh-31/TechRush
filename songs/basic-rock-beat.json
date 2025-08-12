@@ -1,0 +1,37 @@
+[
+  { "sound": "kick", "time": 0 },
+  { "sound": "closed-hihat", "time": 0 },
+  { "sound": "snare", "time": 500 },
+  { "sound": "closed-hihat", "time": 500 },
+  { "sound": "kick", "time": 1000 },
+  { "sound": "closed-hihat", "time": 1000 },
+  { "sound": "snare", "time": 1500 },
+  { "sound": "closed-hihat", "time": 1500 },
+
+  { "sound": "kick", "time": 2000 },
+  { "sound": "closed-hihat", "time": 2000 },
+  { "sound": "snare", "time": 2500 },
+  { "sound": "closed-hihat", "time": 2500 },
+  { "sound": "kick", "time": 3000 },
+  { "sound": "closed-hihat", "time": 3000 },
+  { "sound": "snare", "time": 3500 },
+  { "sound": "closed-hihat", "time": 3500 },
+
+  { "sound": "kick", "time": 4000 },
+  { "sound": "closed-hihat", "time": 4000 },
+  { "sound": "snare", "time": 4500 },
+  { "sound": "closed-hihat", "time": 4500 },
+  { "sound": "kick", "time": 5000 },
+  { "sound": "closed-hihat", "time": 5000 },
+  { "sound": "snare", "time": 5500 },
+  { "sound": "closed-hihat", "time": 5500 },
+
+  { "sound": "kick", "time": 6000 },
+  { "sound": "closed-hihat", "time": 6000 },
+  { "sound": "snare", "time": 6500 },
+  { "sound": "closed-hihat", "time": 6500 },
+  { "sound": "kick", "time": 7000 },
+  { "sound": "closed-hihat", "time": 7000 },
+  { "sound": "snare", "time": 7500 },
+  { "sound": "closed-hihat", "time": 7500 }
+]

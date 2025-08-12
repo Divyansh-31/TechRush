@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoundSpace - Musical Instruments</title>
+    <link rel="stylesheet" href="landing.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="index.html">SoundSpace</a>
+            </div>
+            <div class="nav-links">
+                <a href="piano.html">Play Game</a>
+                <a href="library.html">Library</a>
+                <a href="index.html#instruments">Instruments</a>
+                <a href="notepage.html">Notes</a>
+                <a href="aboutus.html">About Us</a>
+                
+            </div>
+        </nav>
+
+        <main class="container" style="padding: 4rem 2rem;">
+            <section id="library" class="section-header">
+                <h2>Download Pre-made Music JSON Files</h2>
+                <p>Explore our curated collection of music data in JSON format. Perfect for your projects, analysis, or creative experiments.</p>
+            </section>
+
+            <!-- Piano Section -->
+            <section id="piano" style="max-width: 700px; margin: 2rem auto;">
+                <h2 style="color: white; margin-bottom: 1.5rem;">Piano JSON Files</h2>
+                <div class="instruments-grid">
+                    <div class="instrument-card" style="height:auto; perspective:none; cursor: default;">
+                        <div class="card-inner" style="transform:none; box-shadow: none;">
+                            <div class="card-front" style="position:relative; border-radius:12px; padding: 2rem;">
+                                <h3 style="color:white; margin-bottom: 1rem;">Chill Beat</h3>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                                    A smooth beat with mellow piano.
+                                </p>
+                                <a href="songs/new_chill_melody.json" download class="play-button" style="display:inline-block;">
+                                    Download JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more piano JSON cards here -->
+                </div>
+            </section>
+
+            <!-- Drum Section -->
+            <section id="drum" style="max-width: 700px; margin: 2rem auto;">
+                <h2 style="color: white; margin-bottom: 1.5rem;">Drum JSON Files</h2>
+                <div class="instruments-grid">
+                    <div class="instrument-card" style="height:auto; perspective:none; cursor: default;">
+                        <div class="card-inner" style="transform:none; box-shadow: none;">
+                            <div class="card-front" style="position:relative; border-radius:12px; padding: 2rem;">
+                                <h3 style="color:white; margin-bottom: 1rem;">Upbeat Slow</h3>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                                    Slow track with vibrant bass and drums.
+                                </p>
+                                <a href="songs/slow-drum-beat.json" download class="play-button" style="display:inline-block;">
+                                    Download JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instrument-card" style="height:auto; perspective:none; cursor: default;">
+                        <div class="card-inner" style="transform:none; box-shadow: none;">
+                            <div class="card-front" style="position:relative; border-radius:12px; padding: 2rem;">
+                                <h3 style="color:white; margin-bottom: 1rem;">Rock Beat</h3>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                                    Minimalistic rock beat that goes with any rock music.
+                                </p>
+                                <a href="songs/basic-rock-beat.json" download class="play-button" style="display:inline-block;">
+                                    Download JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="instrument-card" style="height:auto; perspective:none; cursor: default;">
+                        <div class="card-inner" style="transform:none; box-shadow: none;">
+                            <div class="card-front" style="position:relative; border-radius:12px; padding: 2rem;">
+                                <h3 style="color:white; margin-bottom: 1rem;">Groovy Beat</h3>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">
+                                    A groovy beat for those who want a unique touch to their songs.
+                                </p>
+                                <a href="songs/funky-groove.json" download class="play-button" style="display:inline-block;">
+                                    Download JSON
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>SoundSpace</h3>
+                    <p>Making music accessible to everyone</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Instruments</h4>
+                        <a href="drumpad.html">Drum Pad</a>
+                        <a href="piano.html">Piano</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Support</h4>
+                        <a href="https://github.com/Divyansh-31/TechRush">Github</a>
+                        <a href="notepage.html">Notes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team STARKS. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="landing.js"></script>
+</body>
+</html>

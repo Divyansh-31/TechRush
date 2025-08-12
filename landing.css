@@ -436,7 +436,7 @@ body {
 }
 
 .feature-item:hover {
-    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .feature-icon {
